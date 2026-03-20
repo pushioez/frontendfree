@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>BeautyBook</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.cdnfonts.com/css/blowbrush"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <main class="app-shell">
+        <!-- Main page -->
+        <section class="page page-main is-active" data-page="main">
+          <div class="page-inner">
+            <header class="top-brand">
+              <h1 class="brand blowbrush">BeautyBook</h1>
+            </header>
+
+            <section class="page-content">
+              <div class="welcome-card">
+                <h2 class="welcome-title blowbrush">Welcome Back!</h2>
+                <p class="welcome-text">
+                  Ready to enhance your natural beauty? Book your next
+                  appointment or explore our services.
+                </p>
+              </div>
+
+              <div class="action-grid">
+                <button class="action-tile" data-nav="price" type="button">
+                  <span class="tile-icon" aria-hidden="true">
+                    <span class="ico ico-tag"></span>
+                  </span>
+                  <span class="tile-text">Price</span>
+                </button>
+                <button class="action-tile" data-nav="portfolio" type="button">
+                  <span class="tile-icon" aria-hidden="true">
+                    <span class="ico ico-image"></span>
+                  </span>
+                  <span class="tile-text">Portfolio</span>
+                </button>
+                <button class="action-tile" data-nav="me" type="button">
+                  <span class="tile-icon" aria-hidden="true">
+                    <span class="ico ico-clipboard"></span>
+                  </span>
+                  <span class="tile-text">My Records</span>
+                </button>
+                <button class="action-tile" data-nav="record-date" type="button">
+                  <span class="tile-icon" aria-hidden="true">
+                    <span class="ico ico-calendar"></span>
+                  </span>
+                  <span class="tile-text">Book Now</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Price page -->
+        <section class="page page-price" data-page="price">
+          <div class="page-inner">
+            <header class="top-brand top-brand--with-sub">
+              <h1 class="brand blowbrush">BeautyBook</h1>
+              <div class="subtitle-block">
+                <h2 class="section-title blowbrush">Our Services</h2>
+                <p class="section-subtitle">Choose your perfect look!</p>
+              </div>
+            </header>
+
+            <section class="page-content">
+              <div class="service-list">
+                <article class="service-card">
+                  <div class="service-head">
+                    <h3 class="service-name blowbrush">French</h3>
+                    <div class="service-pill" aria-hidden="true">
+                      <span class="ico ico-heart"></span>
+                    </div>
+                  </div>
+                  <p class="service-desc">
+                    Classic French manicure with elegant white tips and
+                    natural nails. Perfect for any occasion.
+                  </p>
+                  <div class="service-foot">
+                    <div class="service-meta">
+                      <span class="ico ico-clock"></span>
+                      <span>45 minutes</span>
+                    </div>
+                    <div class="service-price">1000₽</div>
+                  </div>
+                </article>
+
+                <article class="service-card">
+                  <div class="service-head">
+                    <h3 class="service-name blowbrush">Square</h3>
+                    <div class="service-pill" aria-hidden="true">
+                      <span class="ico ico-pin"></span>
+                    </div>
+                  </div>
+                  <p class="service-desc">
+                    Modern square-shaped nails with precise edges and smooth
+                    finish. Bold and sophisticated style.
+                  </p>
+                  <div class="service-foot">
+                    <div class="service-meta">
+                      <span class="ico ico-clock"></span>
+                      <span>50 minutes</span>
+                    </div>
+                    <div class="service-price">800₽</div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="cta-card">
+                <p class="cta-text">Ready to book your appointment?</p>
+                <button class="cta-button" data-nav="record-date" type="button">
+                  Book Now
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Record flow: Date selection -->
+        <section class="page page-record" data-page="record-date">
+          <div class="page-inner">
+            <header class="flow-header">
+              <button class="back-fab" data-back="main" type="button">
+                <span class="ico ico-back"></span>
+              </button>
+              <div class="flow-center">
+                <div class="flow-stepper" aria-hidden="true">
+                  <span class="step is-active">1</span>
+                  <span class="line"></span>
+                  <span class="step">2</span>
+                  <span class="line"></span>
+                  <span class="step">3</span>
+                </div>
+                <h1 class="flow-title blowbrush">Book Appointment</h1>
+              </div>
+              <div class="flow-right"></div>
+            </header>
+            <section class="page-content">
+              <h2 class="flow-subtitle blowbrush">Select Date</h2>
+              <p class="flow-help">Choose your preferred appointment date</p>
+
+              <div class="calendar-card" id="calendar"></div>
+
+              <div class="selected-row" id="selected-date-row" hidden>
+                <div class="selected-left">
+                  <div class="selected-label">Selected Date</div>
+                  <div class="selected-value" id="selected-date-text"></div>
+                </div>
+                <button
+                  class="selected-icon"
+                  type="button"
+                  data-nav="record-time"
+                  aria-label="Next"
+                >
+                  <span class="ico ico-calendar"></span>
+                </button>
+              </div>
+
+              <div class="flow-actions">
+                <button class="soft-btn" data-back="main" type="button">
+                  Back
+                </button>
+                <button class="primary-btn" data-nav="record-time" type="button">
+                  Next
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Record flow: Time selection -->
+        <section class="page page-record-time" data-page="record-time">
+          <div class="page-inner">
+            <header class="flow-header">
+              <button class="back-fab" data-back="record-date" type="button">
+                <span class="ico ico-back"></span>
+              </button>
+              <div class="flow-center">
+                <div class="flow-stepper" aria-hidden="true">
+                  <span class="step is-done">1</span>
+                  <span class="line is-done"></span>
+                  <span class="step is-active">2</span>
+                  <span class="line"></span>
+                  <span class="step">3</span>
+                </div>
+                <h1 class="flow-title blowbrush">Book Appointment</h1>
+              </div>
+              <div class="flow-right"></div>
+            </header>
+            <section class="page-content">
+              <h2 class="flow-subtitle blowbrush">Select Time</h2>
+              <p class="flow-help">Choose your preferred appointment time</p>
+
+              <div class="appointment-row" id="appointment-row">
+                <div class="appointment-left">
+                  <div class="appointment-label">Appointment Date</div>
+                  <div class="appointment-value" id="appointment-date-text"></div>
+                </div>
+                <button class="appointment-icon" type="button" data-back="record-date">
+                  <span class="ico ico-calendar"></span>
+                </button>
+              </div>
+
+              <div class="time-section">
+                <div class="time-section-title">
+                  <span class="ico ico-sun"></span>
+                  <span>Available</span>
+                </div>
+                <div id="time-slots" class="time-grid"></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Record flow: Data entry -->
+        <section class="page page-record-data" data-page="record-data">
+          <div class="page-inner">
+            <header class="flow-header">
+              <button class="back-fab" data-back="record-time" type="button">
+                <span class="ico ico-back"></span>
+              </button>
+              <div class="flow-center">
+                <div class="flow-stepper" aria-hidden="true">
+                  <span class="step is-done">1</span>
+                  <span class="line is-done"></span>
+                  <span class="step is-done">2</span>
+                  <span class="line is-done"></span>
+                  <span class="step is-active">3</span>
+                </div>
+                <h1 class="flow-title blowbrush">Book Appointment</h1>
+              </div>
+              <div class="flow-right"></div>
+            </header>
+            <section class="page-content">
+              <h2 class="flow-subtitle blowbrush">Booking Details</h2>
+              <p class="flow-help">Fill in your information to confirm appointment</p>
+
+              <div class="summary-card">
+                <div class="summary-left">
+                  <div class="summary-label">Appointment</div>
+                  <div class="summary-value" id="summary-datetime"></div>
+                </div>
+                <div class="summary-icon">
+                  <span class="ico ico-calendar"></span>
+                </div>
+              </div>
+
+              <form id="record-form" class="form-card">
+                <label class="input-block">
+                  <span class="input-label">Full Name *</span>
+                  <input class="input" type="text" name="name" required />
+                </label>
+                <label class="input-block">
+                  <span class="input-label">Phone Number *</span>
+                  <input
+                    class="input"
+                    type="tel"
+                    name="phone"
+                    placeholder="+79011111111"
+                    required
+                  />
+                </label>
+                <p class="error-text" id="record-error"></p>
+
+                <div class="form-actions">
+                  <button class="soft-btn" data-back="record-time" type="button">
+                    Back
+                  </button>
+                  <button class="primary-btn" type="submit">
+                    Confirm Booking
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </section>
+
+        <!-- Portfolio page -->
+        <section class="page page-portfolio" data-page="portfolio">
+          <div class="page-inner">
+            <header class="top-brand top-brand--with-sub">
+              <h1 class="brand blowbrush">BeautyBook</h1>
+              <div class="subtitle-block">
+                <h2 class="section-title blowbrush">Portfolio</h2>
+                <p class="section-subtitle">Your works will appear here</p>
+              </div>
+            </header>
+            <section class="page-content">
+              <!-- You can add your portfolio images here later -->
+            </section>
+          </div>
+        </section>
+
+        <!-- Me page -->
+        <section class="page page-me" data-page="me">
+          <div class="page-inner">
+            <header class="flow-header">
+              <button class="back-fab" data-back="main" type="button">
+                <span class="ico ico-back"></span>
+              </button>
+              <div class="flow-center">
+                <h1 class="flow-title blowbrush">My Records</h1>
+              </div>
+              <div class="flow-right"></div>
+            </header>
+            <section class="page-content">
+              <div class="profile-card">
+                <div class="avatar">
+                  <img
+                    src="./images/avatar.png"
+                    alt="Avatar"
+                    onerror="this.style.display='none'"
+                  />
+                </div>
+                <div class="profile-meta">
+                  <div class="profile-name" id="profile-name">Guest</div>
+                  <div class="profile-sub" id="profile-sub">Your bookings</div>
+                </div>
+                <button class="profile-edit" type="button" aria-label="Edit">
+                  <span class="ico ico-edit"></span>
+                </button>
+              </div>
+
+              <div class="drop-card">
+                <div class="drop-title blowbrush">Appointments</div>
+                <button class="drop-btn" type="button" aria-label="Toggle">
+                  <span class="ico ico-chevron"></span>
+                </button>
+              </div>
+              <div id="my-records" class="records-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Tab bar -->
+        <nav class="tabbar">
+          <button class="tab-item" data-nav="main" type="button">
+            <span class="tab-ico"><span class="ico ico-home"></span></span>
+            <span class="tab-label">Main</span>
+          </button>
+          <button class="tab-item" data-nav="price" type="button">
+            <span class="tab-ico"><span class="ico ico-tag"></span></span>
+            <span class="tab-label">Price</span>
+          </button>
+          <button class="tab-item" data-nav="record-date" type="button">
+            <span class="tab-ico tab-ico--active">
+              <span class="ico ico-calendar"></span>
+            </span>
+            <span class="tab-label">Book</span>
+          </button>
+          <button class="tab-item" data-nav="portfolio" type="button">
+            <span class="tab-ico"><span class="ico ico-image"></span></span>
+            <span class="tab-label">Portfolio</span>
+          </button>
+          <button class="tab-item" data-nav="me" type="button">
+            <span class="tab-ico"><span class="ico ico-user"></span></span>
+            <span class="tab-label">Me</span>
+          </button>
+        </nav>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
