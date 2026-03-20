@@ -1,7 +1,7 @@
 // Basic configuration
 // When frontend and backend are served from the same origin
 // (for example, http://127.0.0.1:8000 via FastAPI), keep this empty:
-const API_BASE = "";
+const API_BASE = "https://backendfree-vxjg.onrender.com";
 
 const PAGES = {
   MAIN: "main",
