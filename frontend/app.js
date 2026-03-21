@@ -169,7 +169,7 @@ function renderCalendar() {
   header.className = "calendar-header";
   const monthLabel = document.createElement("div");
   monthLabel.className = "calendar-month";
-  monthLabel.textContent = currentMonth.toLocaleDateString("en-US", {
+  monthLabel.textContent = currentMonth.toLocaleDateString("ru-RU", {
     month: "long",
     year: "numeric",
   });
@@ -201,7 +201,7 @@ function renderCalendar() {
   const grid = document.createElement("div");
   grid.className = "calendar-grid";
 
-  const dayNames = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+  const dayNames = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
   for (const name of dayNames) {
     const dn = document.createElement("div");
     dn.className = "calendar-day-name";
@@ -297,7 +297,7 @@ async function loadTimeSlots(dateObj) {
     data = await fetchJson(`/api/slots?date=${iso}`);
   } catch (err) {
     container.innerHTML =
-      '<p class="hint">Cannot load time slots. Please choose another date.</p>';
+      '<p class="hint">Не удалось загрузить время. Пожалуйста, выберите другую дату.</p>';
     return;
   }
 
@@ -338,7 +338,7 @@ async function handleRecordSubmit(event) {
 
   if (!state.selectedDate || !state.selectedTimeRange) {
     if (errorEl) {
-      errorEl.textContent = "Please choose date and time first.";
+      errorEl.textContent = "Сначала выберите дату и время.";
     }
     return;
   }
@@ -349,7 +349,7 @@ async function handleRecordSubmit(event) {
   if (!phonePattern.test(phone)) {
     if (errorEl) {
       errorEl.textContent =
-        "Phone must be in the format +79011111111.";
+        "Телефон должен быть в формате +79011111111.";
     }
     return;
   }
@@ -376,7 +376,7 @@ async function handleRecordSubmit(event) {
   } catch (err) {
     if (errorEl) {
       errorEl.textContent =
-        err.message || "Failed to save record.";
+        err.message || "Не удалось сохранить запись.";
     }
   }
 }
@@ -389,7 +389,7 @@ async function loadMyRecords() {
   const phone = localStorage.getItem(LS_KEYS.LAST_PHONE);
   if (!phone) {
     container.innerHTML =
-      '<p class="hint">You have no records yet.</p>';
+      '<p class="hint">У вас пока нет записей.</p>';
     return;
   }
 
@@ -400,13 +400,13 @@ async function loadMyRecords() {
     );
   } catch {
     container.innerHTML =
-      '<p class="hint">Cannot load records now.</p>';
+      '<p class="hint">Сейчас не удалось загрузить записи.</p>';
     return;
   }
 
   if (!records.length) {
     container.innerHTML =
-      '<p class="hint">You have no records yet.</p>';
+      '<p class="hint">У вас пока нет записей.</p>';
     return;
   }
 
@@ -420,8 +420,8 @@ async function loadMyRecords() {
     const timeSpan = document.createElement("span");
 
     const d = new Date(rec.date);
-    dateSpan.textContent = `Date: ${formatDateDisplay(d)}`;
-    timeSpan.textContent = `Time: ${rec.time_range}`;
+    dateSpan.textContent = `Дата: ${formatDateDisplay(d)}`;
+    timeSpan.textContent = `Время: ${rec.time_range}`;
 
     meta.append(dateSpan, timeSpan);
 
@@ -430,7 +430,7 @@ async function loadMyRecords() {
     const cancelBtn = document.createElement("button");
     cancelBtn.className = "danger";
     cancelBtn.type = "button";
-    cancelBtn.textContent = "Cancel the record";
+    cancelBtn.textContent = "Отменить запись";
     cancelBtn.onclick = async () => {
       try {
         await fetchJson(

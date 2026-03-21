@@ -24,8 +24,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Montserrat Alternates", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  font-family: "Visby Round CF", "Montserrat Alternates", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--milk);
   color: var(--ink);
 }
@@ -82,9 +82,9 @@ body {
 
 /* Typography */
 .blowbrush {
-  font-family: "BlowBrush", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  letter-spacing: 0.06em;
+  font-family: "Visby Round CF", "Montserrat Alternates", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.02em;
 }
 
 .top-brand {
